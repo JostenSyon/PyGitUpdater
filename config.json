@@ -1,0 +1,7 @@
+{
+    "json_local_path": "C:\\Users\\JostenSyon\\AppData\\Local\\GLR_Manager\\config.json",
+    "github_url": "https://api.github.com/repos/JostenSyon/GUI4GL-2023/releases/latest",
+    "prefix": "v",
+    "direct_download": false,
+    "download_path": "/path/to/download/directory"
+}
