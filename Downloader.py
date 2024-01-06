@@ -13,6 +13,12 @@ class Downloader:
     def download_file(self):
         # Get the JSON data from the URL
         response = requests.get(self.url_release)
+
+        # Check if the request was successful
+        if response.status_code != 200:
+           print(f"Failed to get data from {self.url_release}. HTTP status code: {response.status_code}")
+           return
+
         data = response.json()
 
         # Get the download URL
