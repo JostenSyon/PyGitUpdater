@@ -1,64 +1,46 @@
-# Downloader Class API
+### Downloader Class Documentation
 
-## Class Initialization
+#### Overview
+The `Downloader` class is a Python utility designed to download files from the internet, specifically tailored for downloading release assets from a URL, which can be a direct link or an API endpoint that provides release information in JSON format.
+
+#### Constructor
+```python
+def __init__(self, url_release, direct_download=False, download_path=None):
+```
+The constructor initializes the `Downloader` instance with the following parameters:
+- `url_release`: The URL from which the file or release information will be downloaded.
+- `direct_download`: A boolean flag indicating whether to download the file directly without user confirmation.
+- `download_path`: The path where the downloaded file will be saved. If not specified, the current working directory is used.
+
+#### Methods
+##### download_file
+```python
+def download_file(self):
+```
+The `download_file` method performs the following actions:
+1. Sends an HTTP GET request to the `url_release`.
+2. Checks the HTTP status code of the response to ensure the request was successful.
+3. Parses the JSON response to extract the download URL and file size information.
+4. Prompts the user for confirmation to download the file unless `direct_download` is set to `True`.
+5. Downloads the file and saves it to the specified `download_path`.
+6. Returns the full path to the downloaded file.
+
+#### Usage Example
+To use the `Downloader` class, create an instance by providing the release URL, and optionally set `direct_download` and `download_path`. Then, call the `download_file` method to start the download process.
 
 ```python
-downloader = Downloader(url_release, direct_download=False, download_path=None, extract=False, prefix=None)
+downloader = Downloader('https://api.github.com/repos/username/project/releases/latest')
+downloaded_file_path = downloader.download_file()
+print(f"Downloaded file path: {downloaded_file_path}")
 ```
 
+This will download the latest release asset from the specified GitHub repository and print the path to the downloaded file.
 
-### Parameters
+#### Notes
+- The class uses the `requests` library to make HTTP requests, which must be installed separately as it is not part of the Python Standard Library.
+- It includes error handling for HTTP requests and file operations.
+- The class provides print statements for user interaction and feedback, which can be replaced with a logging system or a GUI prompt as needed.
 
-- `url_release` (str): The URL of the release you want to download.
-- `direct_download` (bool, optional): If set to True, the user will not be asked for confirmation before downloading. Defaults to False.
-- `download_path` (str, optional): The path where the downloaded file will be saved. Defaults to the current working directory.
-- `extract` (bool, optional): If set to True, the downloaded file will be extracted if it's a zip file. Defaults to False.
-- `prefix` (str, optional): All extracted files will be renamed with this prefix. Defaults to an empty string.
+---
 
-## Methods
-
-### download_file
-
-```python
-downloader.download_file()
-```
-
-Downloads the file from the `url_release` specified during class initialization. If `direct_download` is True, the file will be downloaded without asking for user confirmation. If `extract` is True and the downloaded file is a zip file, the file will be extracted and all extracted files will be renamed with the `prefix`.
-
-### extract_and_rename
-
-```python
-downloader.extract_and_rename(file_name)
-```
-
-Extracts all files from a zip file and renames them with the `prefix`. This method is called by `download_file` if `extract` is True.
-
-#### Parameters
-
-- `file_name` (str): The name of the zip file to extract.
-
-
-
-
-#### Example
-
-
-```python
-# Import the class
-from Downloader import Downloader
-
-# Create an instance of the class
-# url_release is the URL of the release you want to download
-# direct_download is set to True, so the user will not be asked for confirmation before downloading
-# download_path is the path where the downloaded file will be saved
-# extract is set to True, so the downloaded file will be extracted if it's a zip file
-# prefix is set to 'new_', so all extracted files will be renamed with this prefix
-downloader = Downloader(url_release="https://github.com/user/repo/releases/latest", 
-                        direct_download=True, 
-                        download_path="/path/to/download/directory", 
-                        extract=True, 
-                        prefix="new_")
-
-# Call the download_file method to start the download
-downloader.download_file()
-```
+Please let me know if there are any more classes you would like to document or if you need further assistance with anything else.
