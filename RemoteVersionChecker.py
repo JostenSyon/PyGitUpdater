@@ -14,7 +14,3 @@ class RemoteVersionChecker:
         if self.prefix:
             remote = remote.lstrip(self.prefix)  # Remove the prefix
         return remote
-
-# Usage
-#version_checker = RemoteVersionChecker("https://api.github.com/repos/JostenSyon/GUI4GL-2023/releases/latest", "v")
-#print(version_checker.get_version())

@@ -12,13 +12,3 @@ class VersionReader:
             config_data = json.load(f)
             version = config_data.get('version', '')
         return version
-
-# Usage
-    
-# Get the username from the environment variables
-#user_profile_name = os.environ['USERNAME']
-#json_file_path = os.path.join(r"C:\Users", user_profile_name, r"AppData\Local\GLR_Manager\config.json")
-
-# Create a VersionReader instance and print the version
-#version_reader = VersionReader(json_file_path)
-#print(version_reader.get_version())
